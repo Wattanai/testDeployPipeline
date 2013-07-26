@@ -11,6 +11,9 @@ class MyTestCase(unittest.TestCase):
     def test_something_wrong(self):
         self.assertEquals(True, False)
 
+    def test_Ho_Lee_Fuk(self):
+        self.assertEquals(True, True)
+
 
 if __name__ == '__main__':
     if is_running_under_teamcity():
