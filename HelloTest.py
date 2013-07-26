@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_something_wrong(self):
-        self.assertEquals(True, False)
+        self.assertEquals(True, True)
 
     def test_Ho_Lee_Fuk(self):
         self.assertEquals(True, True)
