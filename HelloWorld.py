@@ -5,7 +5,7 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world")
+        self.write("Hello, world. NXBT ROCKS!!")
 
 application = tornado.web.Application([
     (r"/", MainHandler),
