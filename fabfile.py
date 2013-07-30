@@ -3,6 +3,10 @@
 from fabric.api import *
 
 def testUATdeploy():
-    cd('/var')
-    sudo('mkdir www2')
-    sudo('cp /home/BuilkTeamCity/TeamCity/builkAgent/work/a01bcce3ff90c57d/* /var/www2/')
+
+    env.user = 'BuilkTeamCity'
+    env.password = 'tmhctr@1008'
+
+    with cd('/var'):
+        sudo('mkdir www2')
+        sudo('cp /home/BuilkTeamCity/TeamCity/buildAgent/work/a01bcce3ff90c57d/* /var/www2/')
