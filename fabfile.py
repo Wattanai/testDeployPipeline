@@ -3,7 +3,7 @@
 from fabric.api import *
 import pexpect
 
-def testUATdeploy(pwd, gitpp="asdfjkl;'"):
+def testUATdeploy(pwd, gitpp='asdfjkl;\''):
 
     env.user = 'BuilkTeamCity'
     env.password = pwd
