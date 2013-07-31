@@ -20,7 +20,7 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
         #child.interact()
 
 
-    with cd('/home/BuilkTeamCity/builkUAT/'):
+    with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
         with cd('/home/BuilkTeamCity/builkUAT/testDeployPipeline'):
             run('pip install -r requirement.txt')
