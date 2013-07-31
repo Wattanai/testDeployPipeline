@@ -1,8 +1,9 @@
 #__author__ = 'wattanai'
 
 from fabric.api import *
+from fexpect import expect
 
-def testUATdeploy(pwd, gitpp="asdfjkl;'"):
+def testUATdeploy(pwd, gitpp):
 
     env.user = 'BuilkTeamCity'
     env.password = pwd
@@ -13,6 +14,7 @@ def testUATdeploy(pwd, gitpp="asdfjkl;'"):
 
     with cd('/home/BuilkTeamCity/builkUAT'):
         run('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        passpharseExpectation = expect("Enter passphrase for key '/home/BuilkTeamCity/.ssh/id_rsa':", gitpp)
 
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
