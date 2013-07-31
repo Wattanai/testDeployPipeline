@@ -1,7 +1,7 @@
 #__author__ = 'wattanai'
 
 from fabric.api import *
-from ilogue.fexpect import expect
+import pexpect
 
 def testUATdeploy(pwd, gitpp="asdfjkl;'"):
 
@@ -13,8 +13,11 @@ def testUATdeploy(pwd, gitpp="asdfjkl;'"):
         run('virtualenv builkUAT')
 
     with cd('/home/BuilkTeamCity/builkUAT'):
-        run('git clone git@github.com:Wattanai/testDeployPipeline.git')
-        passpharseExpectation = expect("Enter passphrase for key '/home/BuilkTeamCity/.ssh/id_rsa':", gitpp)
+        #run('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        child = pexpect.spawn('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        child.expect("Enter passphrase for key '/home/BuilkTeamCity/.ssh/id_rsa':")
+        child.sendline(gitpp)
+        child.interact()
 
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
