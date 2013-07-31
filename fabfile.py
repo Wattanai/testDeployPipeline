@@ -4,9 +4,23 @@ from fabric.api import *
 
 def testUATdeploy():
 
+    env.host = 'BuilkTeamCity.cloudapp.net'
     env.user = 'BuilkTeamCity'
     env.password = 'tmhctr@1008'
 
-    with cd('/var'):
-        sudo('mkdir www2')
-        sudo('cp /home/BuilkTeamCity/TeamCity/buildAgent/work/a01bcce3ff90c57d/* /var/www2/')
+    with cd('/home/BuilkTeamCity'):
+        sudo('rm -r -f builkUAT/')
+        run('virtualenv builkUAT')
+
+    with cd('/home/BuilkTeamCity/builkUAT'):
+        run('git clone git@github.com:Wattanai/testDeployPipeline.git')
+
+    with cd('/home/BuilkTeamCity/builkUAT/bin'):
+        run('source activate')
+        run('pip install -r requirement.txt')
+        sudo('rm /etc/nginx/nginx.conf')
+        sudo('cp ../nginx.conf /etc/nginx/nginx.conf')
+        sudo('nginx -s quit')
+        sudo('supervisorctl stop all')
+        sudo('supervisord -c ../supervisord.conf')
+        sudo('nginx')
