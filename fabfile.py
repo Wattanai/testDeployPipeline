@@ -3,7 +3,7 @@
 from fabric.api import *
 from ilogue.fexpect import expect
 
-def testUATdeploy(pwd, gitpp):
+def testUATdeploy(pwd, gitpp="asdfjkl;'"):
 
     env.user = 'BuilkTeamCity'
     env.password = pwd
