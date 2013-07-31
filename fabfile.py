@@ -2,7 +2,7 @@
 
 from fabric.api import *
 
-def testUATdeploy(pwd, gitpp):
+def testUATdeploy(pwd, gitpp="asdfjkl;'"):
 
     env.user = 'BuilkTeamCity'
     env.password = pwd
