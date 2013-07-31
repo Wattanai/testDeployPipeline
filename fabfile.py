@@ -21,9 +21,9 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
         run('pip install -r ../requirement.txt')
+        sudo('nginx -s quit')
         sudo('rm /etc/nginx/nginx.conf')
         sudo('cp ../nginx.conf /etc/nginx/nginx.conf')
-        sudo('nginx -s quit')
         sudo('supervisorctl stop all')
         sudo('supervisord -c ../supervisord.conf')
         sudo('nginx')
