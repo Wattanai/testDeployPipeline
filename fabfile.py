@@ -15,8 +15,9 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
     with cd('/home/BuilkTeamCity/builkUAT'):
         #run('git clone git@github.com:Wattanai/testDeployPipeline.git')
         child = pexpect.spawn('git clone git@github.com:Wattanai/testDeployPipeline.git')
-        child.expect("Enter passphrase for key '/home/BuilkTeamCity/.ssh/id_rsa':")
+        child.expect('Enter passphrase for key \'/home/BuilkTeamCity/.ssh/id_rsa\':')
         child.sendline(gitpp)
+
 
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
