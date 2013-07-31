@@ -13,19 +13,20 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
         run('virtualenv builkUAT')
 
     with cd('/home/BuilkTeamCity/builkUAT'):
-        #run('git clone git@github.com:Wattanai/testDeployPipeline.git')
-        child = pexpect.spawn('git clone git@github.com:Wattanai/testDeployPipeline.git')
-        child.expect('Enter passphrase for key \'/home/BuilkTeamCity/.ssh/id_rsa\':')
-        child.sendline(gitpp)
-        child.interact()
+        run('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        #child = pexpect.spawn('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        #child.expect('Enter passphrase for key \'/home/BuilkTeamCity/.ssh/id_rsa\':')
+        #child.sendline(gitpp)
+        #child.interact()
 
 
-    with cd('/home/BuilkTeamCity/builkUAT/bin'):
+    with cd('/home/BuilkTeamCity/builkUAT/'):
         run('source activate')
-        run('pip install -r ../requirement.txt')
-        sudo('nginx -s quit')
-        sudo('rm /etc/nginx/nginx.conf')
-        sudo('cp ../nginx.conf /etc/nginx/nginx.conf')
-        sudo('supervisorctl stop all')
-        sudo('supervisord -c ../supervisord.conf')
-        sudo('nginx')
+        with cd('/home/BuilkTeamCity/builkUAT/testDeployPipeline'):
+            run('pip install -r requirement.txt')
+            sudo('nginx -s quit')
+            sudo('rm /etc/nginx/nginx.conf')
+            sudo('cp nginx.conf /etc/nginx/nginx.conf')
+            sudo('supervisorctl stop all')
+            sudo('supervisord -c supervisord.conf')
+            sudo('nginx')
