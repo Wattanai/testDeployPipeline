@@ -1,7 +1,7 @@
 #__author__ = 'wattanai'
 
 from fabric.api import *
-from fexpect import expect
+from ilogue.fexpect import expect
 
 def testUATdeploy(pwd, gitpp):
 
