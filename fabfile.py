@@ -2,11 +2,10 @@
 
 from fabric.api import *
 
-def testUATdeploy():
+def testUATdeploy(pwd, gitpp):
 
-    env.host = 'BuilkTeamCity.cloudapp.net'
     env.user = 'BuilkTeamCity'
-    env.password = 'tmhctr@1008'
+    env.password = pwd
 
     with cd('/home/BuilkTeamCity'):
         sudo('rm -r -f builkUAT/')
@@ -17,7 +16,7 @@ def testUATdeploy():
 
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
         run('source activate')
-        run('pip install -r requirement.txt')
+        run('pip install -r ../requirement.txt')
         sudo('rm /etc/nginx/nginx.conf')
         sudo('cp ../nginx.conf /etc/nginx/nginx.conf')
         sudo('nginx -s quit')
