@@ -21,16 +21,16 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
 
 
     with cd('/home/BuilkTeamCity/builkUAT/bin'):
-        run('source activate')
-        with cd('/home/BuilkTeamCity/builkUAT/testDeployPipeline'):
-            run('pip install -r requirement.txt')
-            sudo('nginx -s quit')
-            sudo('rm /etc/nginx/nginx.conf')
-            sudo('cp nginx.conf /etc/nginx/nginx.conf')
-            sudo('supervisorctl -c supervisord.conf restart tornadoes:*')
-            #sudo('supervisorctl reread')
-            #sudo('supervisorctl update')
-            #sudo('supervisorctl start tornadoes:*')
-            #sudo('supervisorctl stop all')
-            #sudo('supervisord -c supervisord.conf')
-            sudo('nginx')
+        with run('source activate'):
+            with cd('/home/BuilkTeamCity/builkUAT/testDeployPipeline'):
+                run('pip install -r requirement.txt')
+                sudo('nginx -s quit')
+                sudo('rm /etc/nginx/nginx.conf')
+                sudo('cp nginx.conf /etc/nginx/nginx.conf')
+                sudo('supervisorctl -c supervisord.conf restart tornadoes:*')
+                #sudo('supervisorctl reread')
+                #sudo('supervisorctl update')
+                #sudo('supervisorctl start tornadoes:*')
+                #sudo('supervisorctl stop all')
+                #sudo('supervisord -c supervisord.conf')
+                sudo('nginx')
