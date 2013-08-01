@@ -26,5 +26,6 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
         sudo('nginx -s quit')
         sudo('rm /etc/nginx/nginx.conf')
         sudo('cp testDeployPipeline/nginx.conf /etc/nginx/nginx.conf')
-        sudo('supervisorctl -c testDeployPipeline/supervisord.conf update tornadoes:*')
+        sudo('supervisorctl stop torandoes:*')
+        sudo('supervisorctl -c testDeployPipeline/supervisord.conf start tornadoes:*')
         sudo('nginx')
