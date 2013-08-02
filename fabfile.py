@@ -1,7 +1,6 @@
 #__author__ = 'wattanai'
 
 from fabric.api import *
-import pexpect
 
 def testUATdeploy(pwd, gitpp='asdfjkl;\''):
 
@@ -30,3 +29,26 @@ def testUATdeploy(pwd, gitpp='asdfjkl;\''):
         #sudo('supervisorctl stop torandoes:*')
         #sudo('supervisorctl -c testDeployPipeline/supervisord.conf start tornadoes:*')
         sudo('nginx')
+
+
+def prepareUATdeployment(pwd):
+    env.user = 'BuilkTeamCity'
+    env.password = pwd
+
+    with cd('/home/BuilkTeamCity'):
+        sudo('rm -r -f builkUAT/')
+        run('virtualenv builkUAT')
+
+    with cd('/home/BuilkTeamCity/builkUAT'):
+        run('git clone git@github.com:Wattanai/testDeployPipeline.git')
+        run('source bin/activate && pip install -r testDeployPipeline/requirement.txt')
+
+    with cd('/home/BuilkTeamCity'):
+        run('rsync -arvh -e ssh builkUAT/ BuilkUAT@builkuat.cloudapp.net:/home/BuilkUAT/builkUAT/')
+
+def deployUATserver(pwd):
+    env.user = 'BuilkUAT'
+    env.password = pwd
+
+    #sudo('supervisorctl restart tornadoes:*')
+    pass
