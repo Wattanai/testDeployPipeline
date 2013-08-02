@@ -50,5 +50,5 @@ def deployUATserver(pwd):
     env.user = 'BuilkUAT'
     env.password = pwd
 
-    #sudo('supervisorctl restart tornadoes:*')
-    pass
+    sudo('supervisorctl restart tornadoes:*')
+

@@ -9,7 +9,7 @@ define("port", default=8888, help="run on the given port", type=int)
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, Auth Server. NXBT ROCKS!!")
+        self.write("Hello, Auth Server Change1. NXBT ROCKS!!")
 
 application = tornado.web.Application([
     (r"/", MainHandler),
