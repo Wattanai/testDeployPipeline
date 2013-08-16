@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEquals(True, True)
 
     def test_Ho_Lee_Fuk(self):
-        self.assertEquals(True, True)
+        self.assertEquals(True, False)
 
 
 if __name__ == '__main__':
